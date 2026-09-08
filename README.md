@@ -1,6 +1,6 @@
-# game-godot
+# Dark Maze
 
-Trabalho - Lauren e Laura
+Equipe: - Lauren e Laura
 
 ## Título do Jogo
 * Dark Maze

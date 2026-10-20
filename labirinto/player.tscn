@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://6erawmnxhmb"]
+
+[ext_resource type="Script" uid="uid://cn2f2cdo5u6cw" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://kaww0dsbup4p" path="res://recursos/Capturar-removebg-preview.png" id="2_i3pqv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(430, 0, 86, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(516, 0, 86, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(0, 140, 86, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(86, 140, 86, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(172, 140, 86, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ghd"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(86, 0, 86, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvl01"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(172, 0, 86, 140)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4flbx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}],
+"loop": 1,
+"name": &"andando",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ghd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvl01")
+}],
+"loop": 1,
+"name": &"parada",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
+size = Vector2(9, 12)
+
+[node name="player" type="CharacterBody2D" unique_id=778115874]
+script = ExtResource("1_onrkg")
+
+[node name="Animação" type="AnimatedSprite2D" parent="." unique_id=1008234494]
+scale = Vector2(0.13372093, 0.1035714)
+sprite_frames = SubResource("SpriteFrames_4flbx")
+animation = &"parada"
+frame = 1
+frame_progress = 0.012478722
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2145979057]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_sh265")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=547169138]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 600
+limit_bottom = 300

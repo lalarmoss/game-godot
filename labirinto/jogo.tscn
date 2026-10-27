@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://bu5e6cksfauox"]
 
+[ext_resource type="PackedScene" uid="uid://hj4nghea3xnw" path="res://chave.tscn" id="1_1ap6j"]
 [ext_resource type="Texture2D" uid="uid://cixhwk6d63w2s" path="res://recursos/Tilemap/tilemap.png" id="1_kxg5b"]
 [ext_resource type="Texture2D" uid="uid://cixu2q28l4sui" path="res://recursos/Tilemap/tilemap_packed.png" id="2_evvns"]
+[ext_resource type="Script" uid="uid://crqkv8gm4gw88" path="res://areaporta.gd" id="3_qn35j"]
 [ext_resource type="PackedScene" uid="uid://6erawmnxhmb" path="res://player.tscn" id="3_yq54j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evvns"]
@@ -451,6 +453,9 @@ texture = ExtResource("2_evvns")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yq54j")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq5qc"]
+size = Vector2(17, 16)
+
 [node name="jogo" type="Node2D" unique_id=2139211998]
 
 [node name="Node2D" type="Node2D" parent="." unique_id=665871287]
@@ -467,6 +472,13 @@ tile_set = SubResource("TileSet_v3mtk")
 tile_map_data = PackedByteArray("AAAcAAAAAAAJAAMAAAA=")
 tile_set = SubResource("TileSet_xq5qc")
 
+[node name="Areaporta" type="Area2D" parent="Node2D" unique_id=2096074281]
+script = ExtResource("3_qn35j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Areaporta" unique_id=885160618]
+position = Vector2(455.5, 8)
+shape = SubResource("RectangleShape2D_xq5qc")
+
 [node name="player" parent="." unique_id=778115874 instance=ExtResource("3_yq54j")]
 position = Vector2(22, 38)
 
@@ -479,3 +491,13 @@ theme_override_font_sizes/font_size = 2
 text = "saída
 encontrou
  a chave?"
+
+[node name="Area2D" parent="." unique_id=866654344 instance=ExtResource("1_1ap6j")]
+position = Vector2(471, 285)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=195271492]
+visible = false
+position = Vector2(471, 285)
+color = Color(0.039215688, 0.039215688, 0.078431375, 1)
+
+[connection signal="body_entered" from="Node2D/Areaporta" to="Node2D/Areaporta" method="_on_body_entered"]

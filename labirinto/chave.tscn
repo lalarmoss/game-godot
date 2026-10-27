@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://hj4nghea3xnw"]
+
+[ext_resource type="Script" uid="uid://jsuoa62oyqw7" path="res://chave.gd" id="1_ago6s"]
+[ext_resource type="Texture2D" uid="uid://c6vb5nhdtt728" path="res://recursos/pixel-art-illustration-shimmering-gold-260nw-2689557571-removebg-preview.png" id="1_v3h06"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq5qc"]
+size = Vector2(6, 2)
+
+[node name="Area2D" type="Area2D" unique_id=866654344]
+script = ExtResource("1_ago6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=350468436]
+position = Vector2(9.536743e-07, 0)
+scale = Vector2(0.019230772, 0.017857146)
+texture = ExtResource("1_v3h06")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=29815509]
+shape = SubResource("RectangleShape2D_xq5qc")
+
+[node name="Label" type="Label" parent="." unique_id=2059468416]
+visible = false
+offset_left = -43.0
+offset_top = 9.0
+offset_right = 43.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 3
+text = "Isso, agora é só encontrar a porta que eu consigo escapar! "
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

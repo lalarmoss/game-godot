@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+var chave = 0
 const SPEED = 80.0
 
 func _physics_process(_delta: float) -> void:

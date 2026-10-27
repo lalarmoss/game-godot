@@ -68,6 +68,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
 size = Vector2(9, 12)
 
+[sub_resource type="Gradient" id="Gradient_onrkg"]
+offsets = PackedFloat32Array(0, 0.92168677)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bfiwk"]
+gradient = SubResource("Gradient_onrkg")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="player" type="CharacterBody2D" unique_id=778115874]
 script = ExtResource("1_onrkg")
 
@@ -88,3 +100,8 @@ limit_left = 0
 limit_top = 0
 limit_right = 600
 limit_bottom = 300
+
+[node name="lanterna" type="PointLight2D" parent="." unique_id=1422347034]
+position = Vector2(4.7683716e-07, 2.3841858e-07)
+scale = Vector2(0.16015625, 0.14453125)
+texture = SubResource("GradientTexture2D_bfiwk")

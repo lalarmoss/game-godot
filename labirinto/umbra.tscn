@@ -1,7 +1,55 @@
 [gd_scene format=3 uid="uid://bkecenjayemff"]
 
+[ext_resource type="Texture2D" uid="uid://cud8vh5bogw1t" path="res://recursos/Sprite Sheet de Monstro Sombrio em Pixel Art (1).png" id="1_wdahw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqlpu"]
+atlas = ExtResource("1_wdahw")
+region = Rect2(940, 235, 187, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2ckr"]
+atlas = ExtResource("1_wdahw")
+region = Rect2(1128, 235, 187, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agr3m"]
+atlas = ExtResource("1_wdahw")
+region = Rect2(1316, 235, 187, 235)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xq5qc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqlpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2ckr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agr3m")
+}],
+"loop": 1,
+"name": &"andando",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcqmi"]
+size = Vector2(155, 156)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bfiwk"]
+radius = 281.90247
+
 [node name="umbra" type="CharacterBody2D" unique_id=484611600]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=293396022]
+sprite_frames = SubResource("SpriteFrames_xq5qc")
+animation = &"andando"
+frame_progress = 0.7629404
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1623018286]
+position = Vector2(9.5, -3)
+shape = SubResource("RectangleShape2D_xcqmi")
+debug_color = Color(0.8579392, 0.2800204, 0.59951454, 0.41960785)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=513722450]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1334795932]
+shape = SubResource("CircleShape2D_bfiwk")

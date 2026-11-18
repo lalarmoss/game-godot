@@ -1,5 +1,39 @@
 [gd_scene format=3 uid="uid://hlvff4q5a43g"]
 
+[ext_resource type="Script" uid="uid://cig58kp6cbf2w" path="res://game_over.gd" id="1_ccer4"]
+[ext_resource type="FontFile" uid="uid://cog7e032iyu4j" path="res://recursos/Australian Mirages.ttf" id="1_yxx3c"]
+[ext_resource type="FontFile" uid="uid://dkwa8y8uuqlmg" path="res://recursos/The Biology Gang.ttf" id="2_ccer4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nx20y"]
+bg_color = Color(0.03839716, 0.038397174, 0.038397126, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8u835"]
+bg_color = Color(0.30533126, 0.0720082, 0.053952277, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_detail = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftari"]
+bg_color = Color(0.17358741, 0.026132844, 0.018972192, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28vn7"]
+bg_color = Color(0.6812943, 0.20698643, 0.17420271, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2vha"]
+bg_color = Color(0.53076726, 0.14969161, 0.12411297, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkf4o"]
+bg_color = Color(0.1924347, 0.031518422, 0.023496747, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3u7xm"]
+bg_color = Color(0.9202976, 0.3953294, 0.3460684, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+corner_detail = 16
+
 [node name="game over" type="Control" unique_id=406693534]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +41,66 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ccer4")
+
+[node name="background" type="Panel" parent="." unique_id=1399738048]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nx20y")
+
+[node name="titulo" type="Label" parent="." unique_id=1030530179]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -82.0
+offset_right = 34.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_yxx3c")
+theme_override_font_sizes/font_size = 20
+text = "Game over"
+
+[node name="organizar" type="VBoxContainer" parent="." unique_id=2105550408]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 17
+
+[node name="sair4" type="Button" parent="organizar" unique_id=675861331]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ccer4")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_8u835")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ftari")
+theme_override_styles/hover = SubResource("StyleBoxFlat_28vn7")
+text = "Sair"
+
+[node name="tentardnv" type="Button" parent="organizar" unique_id=1847539365]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ccer4")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2vha")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fkf4o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3u7xm")
+text = "Tentar?..."
+
+[connection signal="pressed" from="organizar/sair4" to="." method="_on_sair_4_pressed"]
+[connection signal="pressed" from="organizar/tentardnv" to="." method="_on_tentardnv_pressed"]

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 var chave = 0
+var vidas = 3
 const SPEED = 80.0
 
 func _physics_process(_delta: float) -> void:
@@ -23,3 +24,5 @@ func _physics_process(_delta: float) -> void:
 	
 	if velocity.x < 0.0: $"Animação".flip_h = true
 	else: $"Animação".flip_h = false
+	
+	

@@ -1,5 +1,25 @@
 [gd_scene format=3 uid="uid://b6e75x30cbbal"]
 
+[ext_resource type="Script" uid="uid://q5o0t3l4ri8v" path="res://finalfelize.gd" id="1_nx20y"]
+[ext_resource type="Texture2D" uid="uid://b258imubkevgf" path="res://recursos/download.jpg" id="2_kywo6"]
+[ext_resource type="FontFile" uid="uid://cog7e032iyu4j" path="res://recursos/Australian Mirages.ttf" id="3_qjko6"]
+[ext_resource type="FontFile" uid="uid://dkwa8y8uuqlmg" path="res://recursos/The Biology Gang.ttf" id="4_ias3m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0y7ji"]
+texture = ExtResource("2_kywo6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8dgo"]
+bg_color = Color(0.09154227, 0.59451056, 0.90650445, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv71o"]
+bg_color = Color(0, 0.40392157, 0.6313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mrjj"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+corner_detail = 16
+
 [node name="finalfelize" type="Control" unique_id=461616097]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +27,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nx20y")
+
+[node name="background" type="Panel" parent="." unique_id=1128494486]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0y7ji")
+
+[node name="titulo" type="Label" parent="." unique_id=966087064]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -78.0
+offset_right = -73.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_qjko6")
+theme_override_font_sizes/font_size = 20
+text = "Fim!!"
+
+[node name="sair2" type="Button" parent="." unique_id=1462836051]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 37.0
+offset_right = 64.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("4_ias3m")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_v8dgo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xv71o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0mrjj")
+text = "Sair"
+
+[connection signal="pressed" from="sair2" to="." method="_on_sair_2_pressed"]

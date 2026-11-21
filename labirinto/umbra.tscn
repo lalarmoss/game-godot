@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxeda2nfcb4tk" path="res://umbra.gd" id="1_tqlpu"]
 [ext_resource type="Texture2D" uid="uid://cud8vh5bogw1t" path="res://recursos/Sprite Sheet de Monstro Sombrio em Pixel Art (1).png" id="1_wdahw"]
+[ext_resource type="AudioStream" uid="uid://cmfpo74wdpy4i" path="res://recursos/Tiles/oliper18-scary-laugh-377526.mp3" id="3_d2ckr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqlpu"]
 atlas = ExtResource("1_wdahw")
@@ -36,7 +37,7 @@ animations = [{
 size = Vector2(23.25, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bfiwk"]
-radius = 20.0
+radius = 15.0
 
 [sub_resource type="Gradient" id="Gradient_onrkg"]
 offsets = PackedFloat32Array(0, 0.92168677)
@@ -49,6 +50,9 @@ height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45nkh"]
+size = Vector2(24, 20)
 
 [node name="umbra" type="CharacterBody2D" unique_id=484611600]
 position = Vector2(0, 2)
@@ -68,9 +72,25 @@ debug_color = Color(0.8579392, 0.2800204, 0.59951454, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1334795932]
 shape = SubResource("CircleShape2D_bfiwk")
+debug_color = Color(0.98714346, 0, 0.32111087, 0.41960785)
 
 [node name="lanterna" type="PointLight2D" parent="." unique_id=223593910]
 position = Vector2(0.25000024, 0.24999899)
 scale = Vector2(0.16210938, 0.14648436)
 color = Color(0.66263485, 0, 0.06940246, 1)
 texture = SubResource("GradientTexture2D_tqlpu")
+
+[node name="TimerPatrulha" type="Timer" parent="." unique_id=213036556]
+
+[node name="AreaDano" type="Area2D" parent="." unique_id=808285796]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDano" unique_id=1571950575]
+shape = SubResource("RectangleShape2D_45nkh")
+
+[node name="risada" type="AudioStreamPlayer2D" parent="." unique_id=229080649]
+stream = ExtResource("3_d2ckr")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TimerPatrulha" to="." method="_on_timer_patrulha_timeout"]
+[connection signal="body_entered" from="AreaDano" to="." method="_on_area_dano_body_entered"]

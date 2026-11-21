@@ -1,47 +1,72 @@
 extends CharacterBody2D
 
-var velocidade = 150.0
-var direcao_atual = Vector2.RIGHT
-var player = null
+@export var velocidade_patrulha: float = 60.0
+@export var velocidade_perseguicao: float = 85.0
 
-func _ready():
-	$Area2D.body_entered.connect(_on_encostou)
-	player = get_tree().root.find_child("player", true, false)
+var direcao: Vector2 = Vector2.ZERO
+var alvo_player: Node2D = null
+var tempo_preso: float = 0.0
+
+var pontos_teleporte = [
+	Vector2(100, 100),
+	Vector2(450, 80),
+	Vector2(250, 200),
+	Vector2(450, 300),
+	Vector2(100, 300)
+]
+
+func _ready() -> void:
 	escolher_nova_direcao()
 
-func _physics_process(delta):
-	if player and global_position.distance_to(player.global_position) < 180:
-		direcao_atual = global_position.direction_to(player.global_position)
-	
-	velocity = direcao_atual * velocidade
+func _physics_process(delta: float) -> void:
+	if alvo_player != null:
+		direcao = (alvo_player.global_position - global_position).normalized()
+		velocity = direcao * velocidade_perseguicao
+	else:
+		velocity = direcao * velocidade_patrulha
+
 	move_and_slide()
-	
-	if get_slide_collision_count() > 0:
+
+	if alvo_player == null:
+		if get_real_velocity().length() < 5.0:
+			tempo_preso += delta
+			if tempo_preso >= 0.25:
+				tempo_preso = 0.0
+				escolher_nova_direcao()
+		else:
+			tempo_preso = 0.0
+
+func escolher_nova_direcao() -> void:
+	var direcoes_possiveis = [
+		Vector2.UP,
+		Vector2.DOWN,
+		Vector2.LEFT,
+		Vector2.RIGHT
+	]
+	direcoes_possiveis.erase(direcao)
+	direcao = direcoes_possiveis.pick_random()
+
+func _on_timer_patrulha_timeout() -> void:
+	if alvo_player == null:
 		escolher_nova_direcao()
 
-func escolher_nova_direcao():
-	var opcoes = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
-	opcoes.erase(direcao_atual)
-	direcao_atual = opcoes.pick_random()
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "player":
+		alvo_player = body
 
-func _on_encostou(body):
-	if body.has_method("levar_dano"):
-		body.levar_dano()
-		teletransportar(body.global_position)
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body == alvo_player:
+		alvo_player = null
+		escolher_nova_direcao()
 
-func teletransportar(pos_player):
-	var pontos_seguros = [
-		Vector2(50, 50),
-		Vector2(500, 50),
-		Vector2(50, 350),
-		Vector2(500, 350),
-		Vector2(280, 200)
-	]
-	
-	pontos_seguros.shuffle()
-	for ponto in pontos_seguros:
-		if ponto.distance_to(pos_player) > 150:
-			global_position = ponto
-			break
-			
-	escolher_nova_direcao()
+func _on_area_dano_body_entered(body: Node2D) -> void:
+	if body.name == "player":
+		body.vidas -= 1
+		$risada.play()
+		global_position = pontos_teleporte.pick_random()
+		alvo_player = null
+		escolher_nova_direcao()
+		
+		
+		
+		

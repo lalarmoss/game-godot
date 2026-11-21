@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cig58kp6cbf2w" path="res://game_over.gd" id="1_ccer4"]
 [ext_resource type="FontFile" uid="uid://cog7e032iyu4j" path="res://recursos/Australian Mirages.ttf" id="1_yxx3c"]
 [ext_resource type="FontFile" uid="uid://dkwa8y8uuqlmg" path="res://recursos/The Biology Gang.ttf" id="2_ccer4"]
+[ext_resource type="AudioStream" uid="uid://cmfpo74wdpy4i" path="res://recursos/Tiles/oliper18-scary-laugh-377526.mp3" id="4_8u835"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nx20y"]
 bg_color = Color(0.03839716, 0.038397174, 0.038397126, 1)
@@ -101,6 +102,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_k2vha")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fkf4o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3u7xm")
 text = "Tentar?..."
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1813807833]
+stream = ExtResource("4_8u835")
+autoplay = true
 
 [connection signal="pressed" from="organizar/sair4" to="." method="_on_sair_4_pressed"]
 [connection signal="pressed" from="organizar/tentardnv" to="." method="_on_tentardnv_pressed"]

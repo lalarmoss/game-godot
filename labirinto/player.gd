@@ -1,6 +1,6 @@
 extends CharacterBody2D
 var chave = 0
-var vidas = 3
+var vidas = 2
 const SPEED = 80.0
 
 func _physics_process(_delta: float) -> void:
@@ -24,5 +24,13 @@ func _physics_process(_delta: float) -> void:
 	
 	if velocity.x < 0.0: $"Animação".flip_h = true
 	else: $"Animação".flip_h = false
+
+func levar_dano():
+	vidas -= 1
+	print("Vidas: ", vidas)
+	
+	if vidas <= 0:
+		get_tree().change_scene_to_file("res://game_over.tscn")
+
 	
 	

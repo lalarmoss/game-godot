@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cixu2q28l4sui" path="res://recursos/Tilemap/tilemap_packed.png" id="2_evvns"]
 [ext_resource type="Script" uid="uid://crqkv8gm4gw88" path="res://areaporta.gd" id="3_qn35j"]
 [ext_resource type="PackedScene" uid="uid://6erawmnxhmb" path="res://player.tscn" id="3_yq54j"]
+[ext_resource type="PackedScene" uid="uid://bkecenjayemff" path="res://umbra.tscn" id="6_8c340"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evvns"]
 texture = ExtResource("1_kxg5b")
@@ -493,10 +494,19 @@ encontrou
  a chave?"
 
 [node name="Area2D" parent="." unique_id=866654344 instance=ExtResource("1_1ap6j")]
-position = Vector2(471, 285)
+position = Vector2(192, 233)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=195271492]
+visible = false
 position = Vector2(471, 285)
 color = Color(0.039215688, 0.039215688, 0.078431375, 1)
+
+[node name="umbra" parent="." unique_id=484611600 instance=ExtResource("6_8c340")]
+position = Vector2(393, 46)
+
+[node name="vidas" type="Label" parent="." unique_id=1212364729]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Vidas:"
 
 [connection signal="body_entered" from="Node2D/Areaporta" to="Node2D/Areaporta" method="_on_body_entered"]
